@@ -41,7 +41,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="/bower_components/paper-item/paper-item-shared-styles.html">
 <!-- <link rel="import" href="bower_components/paper-item/paper-item-behaviour.html"> -->
 
+<link rel="import" href="/bower_components/app-drawer/app-drawer.html">
+<link rel="import" href="/bower_components/app-drawer-layout/app-drawer-layout.html">
 
+<link rel="import" href="/bower_components/paper-checkbox/paper-checkbox.html">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen" title="no title">
 
 
 
@@ -157,23 +162,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
     <paper-dialog id="modal" modal>
 
-      <form is="iron-form" method="get" action="/" id="basic">
-        <paper-input name="name" label="Name" required></paper-input>
-        <br>
-        <input type="checkbox" name="food" value="donuts" checked> I like donuts
-        <br>
-        <input type="checkbox" name="food" value="pizza" required> I like pizza
-        <br>
-        <paper-checkbox name="food" value="cheese" required>I like cheese</paper-checkbox>
-        <br>
-        <paper-dropdown-menu label="Cars" name="cars" required>
+      <form is="iron-form" method="POST" action="/" id="basic">
+        <paper-input name="rcs" label="RCS ID" required></paper-input>
+
+        <paper-dropdown-menu label="Shirt Size" name="size" required>
           <paper-menu class="dropdown-content">
-            <paper-item value="volvo">Volvo</paper-item>
-            <paper-item value="saab">Saab</paper-item>
-            <paper-item value="fiat">Fiat</paper-item>
-            <paper-item value="audi">Audi</paper-item>
+            <paper-item value="sm">Small</paper-item>
+            <paper-item value="md">Medium</paper-item>
+            <paper-item value="lg">Large</paper-item>
+            <paper-item value="xl">Extra-large</paper-item>
           </paper-menu>
         </paper-dropdown-menu>
+        <br>
+        <paper-checkbox name="food" value="yes">I like free food</paper-checkbox>
         <paper-button raised onclick="_submit(event)">Submit</paper-button>
         <paper-button raised onclick="_reset(event)">Reset</paper-button>
         <div class="output"></div>
@@ -193,42 +194,51 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
       </script>
       <div class="buttons">
-        <paper-button dialog-confirm autofocus>Tap me to close</paper-button>
+        <paper-button dialog-confirm autofocus>Close</paper-button>
       </div>
     </paper-dialog>
 
+
+    <!--header layout conetent-->
     <app-header-layout>
 
       <app-header reveals effects="waterfall">
-
         <app-toolbar class="toolbar">
           <div class="tabs">
             <a href="#about">
               <paper-button>
-                <p>
-                  <iron-icon icon="icons:info-outline"></iron-icon> About
-                </p>
+                <center>
+                  <p>
+                    <iron-icon icon="icons:info-outline"></iron-icon> About
+                  </p>
+                </center>
               </paper-button>
             </a>
             <a href="#schedule">
               <paper-button>
-                <p>
-                  <iron-icon icon="icons:schedule"></iron-icon> Schedule
-                </p>
+                <center>
+                  <p>
+                    <iron-icon icon="icons:schedule"></iron-icon> Schedule
+                  </p>
+                </center>
               </paper-button>
             </a>
             <a href="#contact">
               <paper-button>
-                <p>
-                  <iron-icon icon="icons:supervisor-account"></iron-icon> Contact
-                </p>
+                <center>
+                  <p>
+                    <iron-icon icon="icons:supervisor-account"></iron-icon> Contact
+                  </p>
+                </center>
               </paper-button>
             </a>
             <a>
               <paper-button raised onclick="modal.open()">
-                <p>
-                  <iron-icon icon="icons:thumb-up"></iron-icon> Signup
-                </p>
+                <center>
+                  <p>
+                    <iron-icon icon="icons:thumb-up"></iron-icon> Signup
+                  </p>
+                </center>
               </paper-button>
             </a>
           </div>
@@ -236,14 +246,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       </app-header>
 
+
       <header>
         <div class="glass_smoke">
           <div id="header_container">
-            <iron-image style="width:50vw; height:100vh;" sizing="contain" src="images/rpiss_logo_text_transp.png"></iron-image>
+            <iron-image style="width:50vw;height:20em" sizing="contain" src="images/rpiss_logo_text_transp.png"></iron-image>
             <h1>
-              FUCK
+              It's Lit.
             </h1>
-            <p> this is some text</p>
+            <p> be there or be square</p>
           </div>
         </div>
       </header>
@@ -279,9 +290,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <section id="schedule">
         <div class="container">
-          <paper-card heading="Schedule" image="/images/calendar.png" alt="Emmental">
+          <paper-card heading="Schedule" image="src/images/calendar.png" alt="calendar">
             <div class="card-content">
-              Emmentaler or Emmental is a yellow, medium-hard cheese that originated in the area around Emmental, Switzerland. It is one of the cheeses of Switzerland, and is sometimes known as Swiss cheese.
+              This is where we would tal about the scheudl fsdf asdfa sfaskdfln fasdfpoasdfa Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+              ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.
             </div>
             <div class="card-actions">
               <paper-button>Share</paper-button>
@@ -290,34 +303,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </paper-card>
         </div>
 
-      </section>
+        <section id="contact">
+          <div class="container">
+            <paper-card heading="Contact" image="src/images/calendar.png" alt="calendar">
+              <div class="card-content">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+              <div class="card-actions">
+              </div>
+            </paper-card>
+          </div>
 
-      <section id="signup">
-        <div class="container">
-          <div>
-            <iron-image style="width:50vw; height:20em;" sizing="contain" src="images/rpiss_logo_text_transp.png"></iron-image>
+        </section>
+        <section id="signup">
+          <div class="container">
+            <paper-button style="width:95%;height:30%;background-color:red" onclick="modal.open()"> Sign me up </paper-button>
           </div>
-          <div>
-            <h3>Contact</h3>
-            <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea. Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.</p>
-            <p>Convenire definiebas scriptorem eu cum. Sit dolor dicunt consectetuer no. Convenire definiebas scriptorem eu cum. Sit dolor dicunt consectetuer no.</p>
-          </div>
-        </div>
-      </section>
-      <section id="contact">
-        <div class="container">
-          <div>
-            <iron-image style="width:50vw; height:20em;" sizing="contain" src="images/rpiss_logo_text_transp.png"></iron-image>
-          </div>
-          <div>
-            <h3>Contact</h3>
-            <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea. Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.</p>
-            <p>Convenire definiebas scriptorem eu cum. Sit dolor dicunt consectetuer no. Convenire definiebas scriptorem eu cum. Sit dolor dicunt consectetuer no.</p>
-          </div>
-        </div>
-      </section>
+        </section>
 
     </app-header-layout>
+
+
 
   </template>
 
