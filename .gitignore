@@ -1,0 +1,5 @@
+#Ignore bower modules
+bower_components/
+
+#Ignore built sites
+build
