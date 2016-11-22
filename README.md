@@ -1,6 +1,9 @@
 # Sophomore Emerging Leaders
+
 ##A progressive web landing page
 built with webcomponents (polymer) and firebase
+
+sample deployment: https://sophomoreemergingleaders.firebaseapp.com/
 
 ##Contributing:
 Feel free to submit bugs or feature requests under the issues tab in this repository
@@ -18,4 +21,5 @@ The google-map component is plain broken, the attributes to disable scrolling do
 ##Attribution:
 
 https://beta.webcomponents.org/ esp the samples.
+
 https://github.com/PolymerElements/app-layout/tree/master/templates esp landing-page

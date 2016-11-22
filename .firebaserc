@@ -1,5 +1,6 @@
 {
   "projects": {
-    "dev": "fir-3594b"
+    "dev": "fir-3594b",
+    "demo": "sophomoreemergingleaders"
   }
 }
