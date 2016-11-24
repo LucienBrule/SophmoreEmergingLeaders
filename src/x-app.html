@@ -158,7 +158,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       google-map {
         height: 100px;
-        pointer-events: none; 
+        pointer-events: none;
 
       }
 
@@ -230,9 +230,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <!-- Nav on mobile: side nav menu -->
         <paper-menu selected="0" attr-for-selected="name">
             <a href="#about"><paper-item  name="About">About</paper-item></a>
-            <a href="#about"><paper-item name="Schedule">Schedule</paper-item></a>
-            <a href="#about"><paper-item name="Contact">Contact</paper-item></a>
-            <a href="#about"><paper-item class = "subliminal_emphasis" name="Signup">Signup</paper-item></a>
+            <a href="#schedule"><paper-item name="Schedule">Schedule</paper-item></a>
+            <a href="#contact"><paper-item name="Contact">Contact</paper-item></a>
+            <a onclick="modal.open()" href="#signup"><paper-item class = "subliminal_emphasis" name="Signup">Signup</paper-item></a>
         </paper-menu>
 
       </app-drawer>
@@ -275,7 +275,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   </center>
                 </paper-tab>
               </a>
-              <a>
+              <a href="#signup">
                 <paper-tab onclick="modal.open()">
                   <center>
                     <p>
