@@ -1,0 +1,61 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<dom-module id="view-splash">
+  <!-- Defines the element's style and local DOM -->
+  <template>
+    <style>
+      .glass_smoke {
+        background-color: rgba(245, 245, 245, 0.5);
+      }
+
+      view-splash {
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        @apply(--layout-vertical);
+        @apply(--layout-center-center);
+        height: calc(100vh - 64px);
+        padding: 0 16px;
+        background-image: url('/src/images/2013-0724-biotech2_2.jpeg');
+        backgrond-repeat: no-repeat;
+        background-size: cover;
+        color: black;
+        text-align: center;
+      }
+
+      header > h2 {
+        font-size: 56px;
+        font-weight: 300;
+        margin: 0;
+      }
+
+      header > p {
+        font-size: 32px;
+      }
+
+      section {
+        padding: 88px 16px;
+      }
+    </style>
+    <header>
+      <div class="glass_smoke">
+        <div id="header_container">
+          <iron-image style="width:50vw;height:20em" sizing="contain" src="/src/images/rpiss_logo_text_transp.png"></iron-image>
+          <p>
+            <strong>
+            Ensuring a better future.
+          </strong>
+          </p>
+          <p>&copy Sophomore Emering Leaders</p>
+        </div>
+      </div>
+    </header>
+  </template>
+  <!-- Creates the element's prototype and registers it -->
+  <script>
+    Polymer({
+      is: 'view-splash'
+    });
+  </script>
+</dom-module>

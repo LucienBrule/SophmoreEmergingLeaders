@@ -1,0 +1,48 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+
+<dom-module id="view-about">
+  <!-- Defines the element's style and local DOM -->
+  <template>
+    <style>
+      google-map {
+        height: 100px;
+        pointer-events: none;
+      }
+    </style>
+
+    <section id="about">
+      <div class="container">
+
+        <paper-card heading="About" alt="Emmental">
+          <div class="card-content">
+            <div>
+              <google-map additionalMapOptions='{
+        scrollwheel: false,
+        navigationControl: false,
+        mapTypeControl: false,
+        scaleControl: false,
+        draggable: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    }' style="height:50vh" zoom="18" latitude="42.7283" longitude="-73.6784" fit-to-markers api-key="AIzaSyC0Aax8h8c00QFRmax4OKmkq5wdPDcTXHM">
+                <google-map-marker latitude="42.7283" longitude="-73.6784"></google-map-marker>
+              </google-map>
+              <div>
+                <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea. Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.</p>
+                <p>Convenire definiebas scriptorem eu cum. Sit dolor dicunt consectetuer no. Convenire definiebas scriptorem eu cum. Sit dolor dicunt consectetuer no.</p>
+              </div>
+            </div>
+            <!-- <div class="card-actions">
+        <paper-button>Share</paper-button>
+        <paper-button>Explore!</paper-button>
+      </div> -->
+        </paper-card>
+        </div>
+    </section>
+  </template>
+  <!-- Creates the element's prototype and registers it -->
+  <script>
+    Polymer({
+      is: 'view-about'
+    });
+  </script>
+</dom-module>

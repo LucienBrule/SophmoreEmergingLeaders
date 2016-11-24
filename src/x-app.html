@@ -12,6 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="/bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="/bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="/bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="/bower_components/iron-media-query/iron-media-query.html">
 
@@ -53,7 +54,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen" title="no title">
 
 
-
+<link rel="import" href="soph-views/view-splash.html">
+<link rel="import" href="soph-views/view-about.html">
+<link rel="import" href="soph-views/view-schedule.html">
+<link rel="import" href="soph-views/view-contact.html">
+<link rel="import" href="soph-views/view-signup.html">
 
 
 
@@ -94,32 +99,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         border-bottom: 1px solid #222;
       }
 
-      header {
-        @apply(--layout-vertical);
-        @apply(--layout-center-center);
-        height: calc(100vh - 64px);
-        padding: 0 16px;
-        background-image: url('images/2013-0724-biotech2_2.jpeg');
-        backgrond-repeat: no-repeat;
-        background-size: cover;
-        color: black;
-        text-align: center;
-      }
-
-      header > h2 {
-        font-size: 56px;
-        font-weight: 300;
-        margin: 0;
-      }
-
-      header > p {
-        font-size: 32px;
-      }
-
-      section {
-        padding: 88px 16px;
-      }
-
       .container {
         @apply(--layout-horizontal);
         max-width: 800px;
@@ -152,14 +131,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
 
-      .glass_smoke {
-        background-color: rgba(245, 245, 245, 0.5);
-      }
-
       google-map {
         height: 100px;
         pointer-events: none;
-
       }
 
       .content-width {
@@ -179,10 +153,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       [hidden] {
         display: none !important;
       }
-      .subliminal_emphasis{
-        background-color: red;
+
+      .inal_emphasis {
+        color: red;
+        --paper-tab-ink: red;
       }
-      app-toolbar{
+
+      app-toolbar {
         background-color: whitesmoke;
       }
     </style>
@@ -228,11 +205,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <app-drawer id="drawer">
 
         <!-- Nav on mobile: side nav menu -->
-        <paper-menu selected="0" attr-for-selected="name">
-            <a href="#about"><paper-item  name="About">About</paper-item></a>
-            <a href="#schedule"><paper-item name="Schedule">Schedule</paper-item></a>
-            <a href="#contact"><paper-item name="Contact">Contact</paper-item></a>
-            <a onclick="modal.open()" href="#signup"><paper-item class = "subliminal_emphasis" name="Signup">Signup</paper-item></a>
+        <paper-menu selected="{{selected}}" attr-for-selected="name">
+          <a href="#about">
+            <paper-item name="About">About</paper-item>
+          </a>
+          <a href="#schedule">
+            <paper-item name="Schedule">Schedule</paper-item>
+          </a>
+          <a href="#contact">
+            <paper-item name="Contact">Contact</paper-item>
+          </a>
+          <a onclick="modal.open()" href="#signup">
+            <paper-item class="inal_emphasis" name="Signup">Signup</paper-item>
+          </a>
         </paper-menu>
 
       </app-drawer>
@@ -247,7 +232,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           <app-toolbar class="tabs-bar" hidden$="{{!wideLayout}}">
             <!--  Desktop nav-->
-            <paper-tabs class="tabs" selected="0" attr-for-selected="name" bottom-item>
+            <paper-tabs class="tabs" selected="{{selected}}" attr-for-selected="name" bottom-item>
               <a href="#about">
                 <paper-tab>
                   <center>
@@ -276,97 +261,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </paper-tab>
               </a>
               <a href="#signup">
-                <paper-tab onclick="modal.open()">
+                <paper-tab class="inal_emphasis" onclick="modal.open()">
                   <center>
                     <p>
                       <iron-icon icon="icons:thumb-up"></iron-icon> Signup
                     </p>
                   </center>
-                </paper-button>
+                  </paper-button>
               </a>
-            </paper-tab>
+              </paper-tab>
           </app-toolbar>
 
         </app-header>
 
-
-        <header>
-          <div class="glass_smoke">
-            <div id="header_container">
-              <iron-image style="width:50vw;height:20em" sizing="contain" src="images/rpiss_logo_text_transp.png"></iron-image>
-              <p>
-                <strong>
-                Ensuring a better future.
-              </strong>
-            </p>
-              <p>&copy Sophomore Emering Leaders</p>
-            </div>
-          </div>
-        </header>
-
-        <section id="about">
-          <div class="container">
-
-            <paper-card heading="About" alt="Emmental">
-              <div class="card-content">
-                <div>
-                  <google-map additionalMapOptions='{
-    scrollwheel: false,
-    navigationControl: false,
-    mapTypeControl: false,
-    scaleControl: false,
-    draggable: false,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-}' style="height:50vh" zoom="18" latitude="42.7283" longitude="-73.6784" fit-to-markers>
-                    <google-map-marker latitude="42.7283" longitude="-73.6784"></google-map-marker>
-                  </google-map>
-                  <div>
-                    <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea. Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.</p>
-                    <p>Convenire definiebas scriptorem eu cum. Sit dolor dicunt consectetuer no. Convenire definiebas scriptorem eu cum. Sit dolor dicunt consectetuer no.</p>
-                  </div>
-                </div>
-                <!-- <div class="card-actions">
-    <paper-button>Share</paper-button>
-    <paper-button>Explore!</paper-button>
-  </div> -->
-            </paper-card>
-            </div>
-        </section>
-
-        <section id="schedule">
-          <div class="container">
-            <paper-card heading="Schedule" image="src/images/calendar.png" alt="calendar">
-              <div class="card-content">
-                This is where we would tal about the scheudl fsdf asdfa sfaskdfln fasdfpoasdfa Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum.
-              </div>
-              <div class="card-actions">
-                <paper-button>Share</paper-button>
-                <paper-button>Explore!</paper-button>
-              </div>
-            </paper-card>
-          </div>
-
-          <section id="contact">
-            <div class="container">
-              <paper-card heading="Contact" image="src/images/calendar.png" alt="calendar">
-                <div class="card-content">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </div>
-                <div class="card-actions">
-                </div>
-              </paper-card>
-            </div>
-
-          </section>
-          <section id="signup">
-            <div class="container">
-              <paper-button style="width:95%;height:30%;background-color:red" onclick="modal.open()"> Sign me up </paper-button>
-            </div>
-          </section>
-
+        <!-- <iron-pages selected="{{selected}}"> -->
+          <view-splash name="splash" fullbleed></view-splash>
+          <view-about name="about"></view-about>
+          <view-schedule name="schedule"></view-schedule>
+          <view-contact name="contact"></view-contact>
+          <view-signup name="signup"></view-signup>
+        <!-- </iron-pages> -->
       </app-header-layout>
     </app-drawer-layout>
     <iron-media-query query="min-width: 600px" query-matches="{{wideLayout}}"></iron-media-query>
@@ -377,34 +291,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
-
-      Polymer({
-        is: 'x-app',
-        properties: {
-          selected: {
-            type: String,
-            value: 'Item One'
-          },
-          wideLayout: {
-            type: Boolean,
-            value: false,
-            observer: 'onLayoutChange',
-          },
-          items: {
-            type: Array,
-            value: function() {
-              return ['Item One', 'Item Two', 'Item Three', 'Item Four', 'Item Five'];
-            }
-          }
+    Polymer({
+      is: 'x-app',
+      properties: {
+        selected: {
+          type: String,
+          value: 'Item One'
         },
-        onLayoutChange: function(wide) {
-          var drawer = this.$.drawer;
-          if (wide && drawer.opened) {
-            drawer.opened = false;
+        wideLayout: {
+          type: Boolean,
+          value: false,
+          observer: 'onLayoutChange',
+        },
+        items: {
+          type: Array,
+          value: function() {
+            return ['Item One', 'Item Two', 'Item Three', 'Item Four', 'Item Five'];
           }
         }
-      });
-
+      },
+      onLayoutChange: function(wide) {
+        var drawer = this.$.drawer;
+        if (wide && drawer.opened) {
+          drawer.opened = false;
+        }
+      },
+      _pageChanged: function(page) {
+        // Load page import on demand. Show 404 page if fails
+        var resolvedPageUrl = this.resolveUrl('view-' + page + '.html');
+        this.importHref(resolvedPageUrl, null, this._showPage404, true);
+      },
+    });
   </script>
 
 </dom-module>
