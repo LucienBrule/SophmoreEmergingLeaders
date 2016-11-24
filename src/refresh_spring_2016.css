@@ -74,7 +74,7 @@ section {
 }*/
 
 .nogutter {
-    padding-left: 0; 
+    padding-left: 0;
     padding-right: 0;
 }
 .nogutter-left {
@@ -122,7 +122,7 @@ section {
     font-size: 1.5em;
     min-height: 76px;
     padding: 30px 0 0 26px;
-	
+
 }
 
 #slogan sup {
@@ -172,7 +172,7 @@ section {
 
 .hidden {
   position: absolute;
-  left: -99999px; 
+  left: -99999px;
 }
 
 
@@ -393,7 +393,7 @@ sup {
 }
 
 /*#menuBar a {
-   
+
     color: #ffffff;
     font-size: 1em;
 	text-transform: uppercase;
@@ -634,27 +634,27 @@ section#topStory {
     float: right;
 }
 
-footer {
+.footer {
 	background-color: #424242;
 	padding:30px 0;
 }
-footer ul {
+.footer ul {
 	list-style:none;
 }
-footer li {
+.footer li {
 	margin-bottom:.5em;
 }
 
-footer li a {
+.footer li a {
 	color:#ccc;
-	
+
 }
 
 .footCol {
     margin-top: 2em;
     padding: .5em 1em 1em;
 	min-height:250px;
-	
+
 }
 
 .footCol h4 {
@@ -668,8 +668,8 @@ footer li a {
     padding-bottom: 10px;
 }
 
-footer li a:hover,
-footer li a:focus {
+.footer li a:hover,
+.footer li a:focus {
 	color:#fff;
 	opacity:1;
 }
@@ -733,12 +733,12 @@ footer li a:focus {
 #giveNow:hover {
 	color:red;
 	cursor:pointer;
-	
+
 }
 #giveNow_white:hover {
 	color:red;
 	cursor:pointer;
-	
+
 }
 #leadCaption {
     background-color: rgba(0, 0, 0, 0.4);
@@ -774,7 +774,7 @@ section#Highlight {
     background-color: #f5f2f2;
     padding-bottom: 40px;
 }
-@media (max-width: 1200px) {	
+@media (max-width: 1200px) {
  #rpiLogo_white {
         width: 85%;
         padding-left: 10px;
@@ -797,7 +797,7 @@ section#Highlight {
     margin: 0;
 }
 }
-@media (max-width: 992px) {	
+@media (max-width: 992px) {
 
 
 #menuBar a {
@@ -954,7 +954,7 @@ li.hide_m {
 #dates {
     text-align: left;
 }
-footer ul {
+.footer ul {
     padding-left: 0;
 }
 .nav > li.m-only {
@@ -966,7 +966,7 @@ footer ul {
 }
 }
 @media (max-width: 400px) {
-	
+
 
 }
 
@@ -987,5 +987,5 @@ footer ul {
 
 #mediasite-swirl {
     display: none;
-	
+
 }
