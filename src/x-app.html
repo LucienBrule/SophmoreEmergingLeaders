@@ -59,7 +59,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="soph-views/view-schedule.html">
 <link rel="import" href="soph-views/view-contact.html">
 <link rel="import" href="soph-views/view-signup.html">
-
+<link rel="import" href="soph-views/view-gallery.html">
 
 
 
@@ -229,57 +229,66 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <app-toolbar>
             <paper-icon-button class="menu-button" icon="menu" drawer-toggle hidden$="{{wideLayout}}"></paper-icon-button>
           </app-toolbar>
+          <div id="floatwrapper">
+            <app-toolbar class="tabs-bar" hidden$="{{!wideLayout}}">
+              <!--  Desktop nav-->
+              <div float="left">
+                <paper-tabs class="tabs" selected="{{selected}}" attr-for-selected="name" bottom-item>
+                  <a href="#about">
+                    <paper-tab>
+                      <center>
+                        <p>
+                          <iron-icon icon="icons:info-outline"></iron-icon> About
+                        </p>
+                      </center>
+                    </paper-tab>
+                  </a>
+                  <a href="#schedule">
+                    <paper-tab>
+                      <center>
+                        <p>
+                          <iron-icon icon="icons:schedule"></iron-icon> Schedule
+                        </p>
+                      </center>
+                    </paper-tab>
+                  </a>
+                  <a href="#contact">
+                    <paper-tab>
+                      <center>
+                        <p>
+                          <iron-icon icon="icons:supervisor-account"></iron-icon> Contact
+                        </p>
+                      </center>
+                    </paper-tab>
+                  </a>
+                  <a href="#signup">
+                    <paper-tab class="inal_emphasis" onclick="modal.open()">
+                      <center>
+                        <p>
+                          <iron-icon icon="icons:thumb-up"></iron-icon> Signup
+                        </p>
+                      </center>
+                      </paper-button>
+                  </a>
+                  </paper-tab>
+              </div>
+              <div style="position:absolute;right:0;margin-left:auto">
+                <paper-tab  raised href="/sponsors">sponsors </paper-tab>
+                <paper-tab raised href="/sponsors">login </paper-tab>
 
-          <app-toolbar class="tabs-bar" hidden$="{{!wideLayout}}">
-            <!--  Desktop nav-->
-            <paper-tabs class="tabs" selected="{{selected}}" attr-for-selected="name" bottom-item>
-              <a href="#about">
-                <paper-tab>
-                  <center>
-                    <p>
-                      <iron-icon icon="icons:info-outline"></iron-icon> About
-                    </p>
-                  </center>
-                </paper-tab>
-              </a>
-              <a href="#schedule">
-                <paper-tab>
-                  <center>
-                    <p>
-                      <iron-icon icon="icons:schedule"></iron-icon> Schedule
-                    </p>
-                  </center>
-                </paper-tab>
-              </a>
-              <a href="#contact">
-                <paper-tab>
-                  <center>
-                    <p>
-                      <iron-icon icon="icons:supervisor-account"></iron-icon> Contact
-                    </p>
-                  </center>
-                </paper-tab>
-              </a>
-              <a href="#signup">
-                <paper-tab class="inal_emphasis" onclick="modal.open()">
-                  <center>
-                    <p>
-                      <iron-icon icon="icons:thumb-up"></iron-icon> Signup
-                    </p>
-                  </center>
-                  </paper-button>
-              </a>
-              </paper-tab>
+              </div>
+          </div>
           </app-toolbar>
 
         </app-header>
 
         <!-- <iron-pages selected="{{selected}}"> -->
-          <view-splash name="splash" fullbleed></view-splash>
-          <view-about name="about"></view-about>
-          <view-schedule name="schedule"></view-schedule>
-          <view-contact name="contact"></view-contact>
-          <view-signup name="signup"></view-signup>
+        <view-splash name="splash" fullbleed></view-splash>
+        <view-about name="about"></view-about>
+        <view-schedule name="schedule"></view-schedule>
+        <view-contact name="contact"></view-contact>
+        <view-signup name="signup"></view-signup>
+        <view-gallery name="gallery"></view-gallery>
         <!-- </iron-pages> -->
       </app-header-layout>
     </app-drawer-layout>
