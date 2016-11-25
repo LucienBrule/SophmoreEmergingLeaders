@@ -1,8 +1,8 @@
-<link rel="import" href="/bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="/bower_components/iron-image/iron-image.html">
-<link rel="import" href="/bower_components/iron-scroll-threshold/iron-scroll-threshold.html">
-<link rel="import" href="/bower_components/paper-spinner/paper-spinner.html">
-<link rel="import" href="/bower_components/iron-list/iron-list.html">
+ <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../../bower_components/iron-scroll-threshold/iron-scroll-threshold.html">
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../bower_components/iron-list/iron-list.html">
 
 <dom-module id="view-gallery">
   <template>
@@ -140,12 +140,7 @@
       <paper-spinner active$="[[loadingPhotos]]"></paper-spinner> Fetching photos for <b>[[searchText]]</b>
     </div>
 
-    <!-- this element loads more photos when the user scrolls down and reached the lower threshold -->
-    <!-- <iron-scroll-threshold id="scrollTheshold"
-        lower-threshold="500"
-        on-lower-threshold="_onLowerThreshold"
-        scroll-target="document">
-      </iron-scroll-threshold> -->
+
 
   </template>
 </dom-module>
@@ -209,7 +204,7 @@
           this.push('photos', photo);
         }, this);
 
-        this.$.scrollTheshold.clearTriggers();
+        // this.$.scrollTheshold.clearTriggers();
       },
 
       _onLowerThreshold: function() {

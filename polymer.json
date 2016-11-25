@@ -2,15 +2,22 @@
   "entrypoint": "index.html",
   "shell": "src/x-app.html",
   "fragments": [
-    "src/x-app.html"
+    "src/x-app.html",
+    "src/soph-views/rpi-footer.html",
+    "src/soph-views/view-about.html",
+    "src/soph-views/view-contact.html",
+    "src/soph-views/view-gallery.html",
+    "src/soph-views/view-schedule.html",
+    "src/soph-views/view-signup.html",
+    "src/soph-views/view-splash.html"
+
   ],
   "sources": [
-    "src/**/*",
-    "src/images/**/*",
+    "src/soph-views/*",
+    "src/images/*",
     "bower.json"
   ],
   "includeDependencies": [
-    "src/x-app.html",
     "bower_components/webcomponentsjs/webcomponents-lite.js"
   ]
 }
