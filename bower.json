@@ -21,6 +21,7 @@
     "paper-menu": "PolymerElements/paper-menu#^1.2.2",
     "google-map": "GoogleWebComponents/google-map#^1.1.14",
     "paper-checkbox": "PolymerElements/paper-checkbox#^1.4.1",
-    "iron-pages": "PolymerElements/iron-pages#^1.0.8"
+    "iron-pages": "PolymerElements/iron-pages#^1.0.8",
+    "pdf-browser-viewer": "IngressoRapidoWebComponents/pdf-browser-viewer#^1.0.6"
   }
 }

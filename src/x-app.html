@@ -47,6 +47,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="/bower_components/paper-item/paper-item-shared-styles.html">
 <link rel="import" href="/bower_components/paper-tabs/paper-tabs.html">
 
+<link rel="import" href="/bower_components/pdf-browser-viewer/pdf-browser-viewer.html">
+
 <!-- <link rel="import" href="bower_components/paper-item/paper-item-behaviour.html"> -->
 
 <link rel="import" href="/bower_components/paper-checkbox/paper-checkbox.html">
@@ -163,6 +165,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: whitesmoke;
       }
     </style>
+    <!--  Sponsor modal-->
+    <center>
+      <paper-dialog style="z-index:11" style="positon:absolute;margin:auto;" id="modal0" modal>
+        <!-- <h1> Some text </h1> -->
+
+        <pdf-browser-viewer id="buisness-letter" vertical-align="" style="width:60vw"  file="/test_pdfs/test1.pdf" height="800" fullbleed>
+        </pdf-browser-viewer>
+        <div class="buttons">
+          <paper-button dialog-confirm autofocus>Close</paper-button>
+        </div>
+      </paper-dialog>
+    </center>
+
+
+    <!--  Signup modal-->
     <paper-dialog id="modal" modal>
 
       <form is="iron-form" method="POST" action="/" id="basic">
@@ -273,8 +290,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   </paper-tab>
               </div>
               <div style="position:absolute;right:0;margin-left:auto">
-                <paper-tab  raised href="/sponsors">sponsors </paper-tab>
-                <paper-tab raised href="/sponsors">login </paper-tab>
+                <paper-tab onclick="modal0.open()" href="/sponsors">sponsors </paper-tab>
+                <paper-tab href="/sponsors">login </paper-tab>
 
               </div>
           </div>
