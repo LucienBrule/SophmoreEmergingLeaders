@@ -11,26 +11,47 @@
       .row-container {
         width: 100%
         @apply(--layout-horizontal);
-        @apply(--layout-justified);
+        @apply(--layout-center-justified);
       }
-      .flexchild {
+      @media (max-width: 760px) {
+        .row-container {
+          @apply(--layout-wrap);
+        }
+      }
+       .flexchild {
+         #schedule-text{
+           width: 100%;
+           max-width: 100%
+         }
         @apply(--layout-flex);
       }
 
       paper-card {
         width: 100%;
         margin-right: 20px;
+        margin-bottom: 20px;
         /*margin: 20px;*/
       }
       #schedule-text{
         /*width: 200px;*/
-        max-width: 33%;
-        @apply(--layout-self-start);
+        /*max-width: 50%;*/
+        @apply(--layout-self-stretch);
       }
       #schedule-calendar{
         margin-right: 0;
         @apply(--layout-self-start);
       }
+      .flex-card-container{
+        @apply(--layout-vertical);
+
+      }
+      .flex-card-content{
+        @apply(--layout-flex);
+      }
+      /*.card-content{
+        position: absolute;
+        bottom:
+      }*/
       /*
 Generic Styling, for Desktops/Laptops
 */
@@ -121,8 +142,8 @@ and also iPads specifically.
     <section id="schedule">
       <div class="container ">
         <div class="row-container">
-        <paper-card id ="schedule-text"heading="Schedule">
-          <div class="card-content">
+        <paper-card id ="schedule-text" class="flex-card-container" heading="Schedule">
+          <div class="card-content flex-card-content">
             <p>We've got a lot of things going on. Come to the bio tech building Lorem ipsum dolor sit amet, consectetur
               adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
               quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

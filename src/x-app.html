@@ -8,15 +8,13 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
- <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
 
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
-
-
 
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 
@@ -37,12 +35,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
 <link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../bower_components/paper-menu/paper-menu.html">
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../bower_components/paper-item/paper-item-body.html">
 <link rel="import" href="../bower_components/paper-item/paper-item-shared-styles.html">
 <link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/paper-spinner/paper-spinner-lite.html">
+<link rel="import" href="../bower_components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+
+
 
 <link rel="import" href="../bower_components/pdf-browser-viewer/pdf-browser-viewer.html">
 
@@ -72,8 +76,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
 
     <style>
-
-
       a {
         text-decoration: none;
         font-size: inherit;
@@ -173,60 +175,186 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       app-toolbar {
         background-color: whitesmoke;
       }
-    </style>
-    <!--  Sponsor modal-->
-    <center>
-      <paper-dialog on-iron-overlay-opened="_disableDocumentScrolling" on-iron-overlay-closed="_restoreDocumentScrolling" style="z-index:11" style="positon:absolute;margin:auto;" id="modal0" modal>
-        <!-- <h1> Some text </h1> -->
 
-        <pdf-browser-viewer id="buisness-letter" vertical-align="top" style="width:820px" file="https://firebasestorage.googleapis.com/v0/b/sophomoreemergingleaders.appspot.com/o/pdfs%2Ftest1.pdf?alt=media&token=a9ad8863-644a-4e45-90ab-2acc0647d1b7" height="800"
-        fullbleed>
-        </pdf-browser-viewer>
+      .loading-container {
+        position: relative;
+      }
+
+      .loading-spinner {}
+
+      .div_centerer {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+
+      .loading-content {
+        position: absolute;
+        top: 0;
+      }
+
+      :root {
+        --modal-width: 80vw;
+        --buisness-letter-width: 700px;
+        --buisness-letter-min-width: 500px;
+        --buisness-letter-height: 90vh;
+      }
+
+      paper-dialog {
+        top: 0;
+        padding: 0;
+      }
+
+      .paper-dialog-0 > * {
+        padding: 1vw;
+        padding-top: 0 !important;
+        padding-bottom: 0;
+        margin-top: 0 !important;
+      }
+
+      .modal-container {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        margin: 0 auto;
+        min-height: 500px;
+      }
+
+      .modal-interaction {
+        /*position: absolute;*/
+        top: calc(var(--buisness-letter-height) + 30px);
+        /*bottom: 0;*/
+      }
+
+      #sponsor-modal-content {
+        width: calc(var(--buisness-letter-width) + 2vw);
+        height: calc(var(--buisness-letter-height) + 40px);
+      }
+
+      #buisness-letter-container {
+        /*position: relative;
+        top:0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;*/
+      }
+
+      #buisness-letter {
+        /*padding: 0;*/
+        width: var(--buisness-letter-width);
+        height: var(--buisness-letter-height);
+      }
+
+      #buisness-letter-loading {
+        height: 200px;
+        width: 200px;
+      }
+
+      .buttons {
+        height: 3em;
+        border-top: solid 1px #D4D4D4;
+      }
+
+      paper-menu-button {
+        padding: 0;
+      }
+      paper-item{
+        cursor:pointer;
+      }
+    </style>
+
+    <!--  Sponsor modal-->
+    <div class="modal-container">
+      <paper-dialog on-iron-overlay-opened="_disableDocumentScrolling" on-iron-overlay-closed="_restoreDocumentScrolling" id="sponsorModal" with-backdrop="true">
+        <paper-dialog-scrollable>
+          <!-- <h1> Some text </h1> -->
+          <div id="sponsor-modal-content">
+            <h3>Help make this a reality?</h3></h3>
+            <div class="loading-container">
+              <div class="div_centerer">
+                <paper-spinner-lite class="loading-spinner" id="buisness-letter-loading" alt="loading" active></paper-spinner-lite>
+              </div>
+              <!-- <div id="buisness-letter-container"> -->
+              <div class="loading-content">
+                <div id=id="buisness-letter-container">
+
+                  <pdf-browser-viewer width="100%" id="buisness-letter" vertical-align="top" style="" file="https://firebasestorage.googleapis.com/v0/b/sophomoreemergingleaders.appspot.com/o/pdfs%2Ftest1.pdf?alt=media&token=a9ad8863-644a-4e45-90ab-2acc0647d1b7" height="100%"
+                  fullbleed></pdf-browser-viewer>
+                </div>
+
+              </div>
+              <!-- </div> -->
+            </div>
+          </div>
+        </paper-dialog-scrollable>
+        <div class="buttons">
+          <paper-button dialog-confirm autofocus>No thanks</paper-button>
+
+          <!-- <paper-menu-button> -->
+
+            <paper-menu-button vertical-align="bottom" horizontal-align="left">
+              <paper-button onclick=""class="dropdown-trigger">Ensure Student success</paper-button>
+              <paper-listbox class="dropdown-content">
+                <paper-item onclick="paypalform.submit()" name="submit"><iron-icon icon="icons:credit-card"></iron-icon>&nbspPaypal</paper-item>
+                <paper-item>$ Cash</paper-item>
+                <paper-item>Ƀ Bitcoin</paper-item>
+              </paper-listbox>
+            </paper-menu-button>
+
+          <!-- This is my paypal developer information repalce this with yours in production-->
+          <form is="iron-form" id="paypalform" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="VLUC8UXSZ93J2">
+          </form>
+
+
+
+        </div>
+    </div>
+    </paper-dialog>
+    </div>
+
+    <div class="modal-container">
+      <!--  Signup modal-->
+      <paper-dialog id="modal" modal>
+
+        <form is="iron-form" method="POST" action="/" id="basic">
+          <paper-input name="rcs" label="RCS ID" required></paper-input>
+          <paper-dropdown-menu label="Shirt Size" name="size" required>
+            <paper-menu class="dropdown-content">
+              <paper-item value="sm">Small</paper-item>
+              <paper-item value="md">Medium</paper-item>
+              <paper-item value="lg">Large</paper-item>
+              <paper-item value="xl">Extra-large</paper-item>
+            </paper-menu>
+          </paper-dropdown-menu>
+          <br>
+          <paper-checkbox name="food" value="yes">I like free food</paper-checkbox>
+          <paper-button raised onclick="_submit(event)">Submit</paper-button>
+          <paper-button raised onclick="_reset(event)">Reset</paper-button>
+          <div class="output"></div>
+        </form>
+        <script>
+          function _submit(event) {
+            Polymer.dom(event).localTarget.parentElement.submit();
+          }
+
+          function _reset(event) {
+            var form = Polymer.dom(event).localTarget.parentElement
+            form.reset();
+            form.querySelector('.output').innerHTML = '';
+          }
+          basic.addEventListener('iron-form-submit', function(event) {
+            this.querySelector('.output').innerHTML = JSON.stringify(event.detail);
+          });
+        </script>
         <div class="buttons">
           <paper-button dialog-confirm autofocus>Close</paper-button>
         </div>
       </paper-dialog>
-    </center>
-
-
-    <!--  Signup modal-->
-    <paper-dialog id="modal" modal>
-
-      <form is="iron-form" method="POST" action="/" id="basic">
-        <paper-input name="rcs" label="RCS ID" required></paper-input>
-
-        <paper-dropdown-menu label="Shirt Size" name="size" required>
-          <paper-menu class="dropdown-content">
-            <paper-item value="sm">Small</paper-item>
-            <paper-item value="md">Medium</paper-item>
-            <paper-item value="lg">Large</paper-item>
-            <paper-item value="xl">Extra-large</paper-item>
-          </paper-menu>
-        </paper-dropdown-menu>
-        <br>
-        <paper-checkbox name="food" value="yes">I like free food</paper-checkbox>
-        <paper-button raised onclick="_submit(event)">Submit</paper-button>
-        <paper-button raised onclick="_reset(event)">Reset</paper-button>
-        <div class="output"></div>
-      </form>
-      <script>
-        function _submit(event) {
-          Polymer.dom(event).localTarget.parentElement.submit();
-        }
-
-        function _reset(event) {
-          var form = Polymer.dom(event).localTarget.parentElement
-          form.reset();
-          form.querySelector('.output').innerHTML = '';
-        }
-        basic.addEventListener('iron-form-submit', function(event) {
-          this.querySelector('.output').innerHTML = JSON.stringify(event.detail);
-        });
-      </script>
-      <div class="buttons">
-        <paper-button dialog-confirm autofocus>Close</paper-button>
-      </div>
-    </paper-dialog>
+    </div>
 
     <app-drawer-layout force-narrow>
       <app-drawer id="drawer">
@@ -300,7 +428,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   </paper-tab>
               </div>
               <div style="position:absolute;right:0;margin-left:auto">
-                <paper-tab onclick="modal0.open()" href="/sponsors">
+                <paper-tab onclick="sponsorModal.open()" href="/sponsors">
                   <center>
                     <p>sponsors</p>
                   </center>
@@ -318,13 +446,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </app-header>
 
         <!-- <iron-pages selected="{{selected}}"> -->
-            <view-splash name="splash" fullbleed></view-splash>
-            <view-about name="about" fullbleed></view-about>
-            <view-schedule name="schedule"></view-schedule>
-            <view-contact name="contact"></view-contact>
-            <view-signup name="signup"></view-signup>
-            <view-gallery name="gallery"></view-gallery>
-            <rpi-footer></rpi-footer>
+        <view-splash name="splash" fullbleed></view-splash>
+        <view-about name="about" fullbleed></view-about>
+        <view-schedule name="schedule"></view-schedule>
+        <view-contact name="contact"></view-contact>
+        <view-signup name="signup"></view-signup>
+        <view-gallery name="gallery"></view-gallery>
+        <rpi-footer></rpi-footer>
 
 
 

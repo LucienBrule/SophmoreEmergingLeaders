@@ -1,4 +1,4 @@
- <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
@@ -7,10 +7,20 @@
   <!-- Defines the element's style and local DOM -->
   <template>
     <style is="custom-style">
+      a {
+        text-decoration: none;
+
+      }
+
       .row-container {
         @apply(--layout-horizontal);
         @apply(--layout-justified);
         @apply(--layout-wrap);
+      }
+      @media (max-width: 640px) {
+        .row-container {
+          @apply(--layout-center-justified);
+        }
       }
 
       .flexchild {
@@ -58,7 +68,8 @@
         /*bottom: 0px;*/
         width: 100%;
       }
-      .hero-card-content{
+
+      .hero-card-content {
         padding-top: 20px;
         padding-left: 10px;
       }
@@ -92,7 +103,9 @@
             </div>
             <div class="hero-card-actions">
               <hr>
-              <paper-button>Email</paper-button>
+              <a href="mailto:angela.moss@ecorp.com?Subject=Sophmore%20Symposium" tabindex="-1">
+                <paper-button href="mailto:someone@example.com?Subject=Sophmore%20Symposium">Email</paper-button>
+              </a>
             </div>
           </paper-card>
           <paper-card class="contact-person">
@@ -105,7 +118,9 @@
             </div>
             <div class="hero-card-actions">
               <hr>
-              <paper-button>Email</paper-button>
+              <a href="mailto:notedeadlol@protonmail.com?Subject=Sophmore%20Symposium" tabindex="-1">
+                <paper-button>Email</paper-button>
+              </a>
             </div>
           </paper-card>
           <paper-card class="contact-person">
@@ -118,12 +133,16 @@
             </div>
             <div class="hero-card-actions">
               <hr>
-              <paper-button>Email</paper-button>
+              <a href="mailto:elliot@mrrobot.com?Subject=Sophmore%20Symposium" tabindex="-1">
+                <paper-button>Email</paper-button>
+              </a>
             </div>
           </paper-card>
 
-        </div> <!--row-container -->
-       </div> <!--container -->
+        </div>
+        <!--row-container -->
+      </div>
+      <!--container -->
 
     </section>
   </template>
