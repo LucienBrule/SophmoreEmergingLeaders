@@ -29,7 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="/bower_components/app-layout/app-drawer/app-drawer.html">
 
 
-<link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="/bower_components/iron-image/iron-image.html">
 
 <link rel="import" href="/bower_components/app-layout/demo/sample-content.html">
 <link rel="import" href="/bower_components/google-map/google-map.html">
@@ -48,6 +48,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="/bower_components/paper-tabs/paper-tabs.html">
 
 <link rel="import" href="/bower_components/pdf-browser-viewer/pdf-browser-viewer.html">
+<link rel="import" href="/bower_components/parallax-element/parallax-element.html">
+
+
 
 <!-- <link rel="import" href="bower_components/paper-item/paper-item-behaviour.html"> -->
 
@@ -73,6 +76,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
 
     <style>
+
+
       a {
         text-decoration: none;
         font-size: inherit;
@@ -102,6 +107,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       .container {
+        background-color: whitesmoke;
         @apply(--layout-horizontal);
         max-width: 800px;
         margin: 0 auto;
@@ -127,11 +133,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         line-height: 1.5;
       }
 
-      @media (max-width: 600px) {
+      @media (max-width: 640px) {
         .container {
           @apply(--layout-vertical);
         }
       }
+      /*@media (min-width:601px){*/
+
+      app-toolbar {
+        height: 3vh;
+      }
+      /*}*/
 
       google-map {
         height: 100px;
@@ -167,10 +179,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
     <!--  Sponsor modal-->
     <center>
-      <paper-dialog style="z-index:11" style="positon:absolute;margin:auto;" id="modal0" modal>
+      <paper-dialog on-iron-overlay-opened="_disableDocumentScrolling" on-iron-overlay-closed="_restoreDocumentScrolling" style="z-index:11" style="positon:absolute;margin:auto;" id="modal0" modal>
         <!-- <h1> Some text </h1> -->
 
-        <pdf-browser-viewer id="buisness-letter" vertical-align="" style="width:60vw"  file="/test_pdfs/test1.pdf" height="800" fullbleed>
+        <pdf-browser-viewer id="buisness-letter" vertical-align="top" style="width:820px" file="https://firebasestorage.googleapis.com/v0/b/sophomoreemergingleaders.appspot.com/o/pdfs%2Ftest1.pdf?alt=media&token=a9ad8863-644a-4e45-90ab-2acc0647d1b7" height="800"
+        fullbleed>
         </pdf-browser-viewer>
         <div class="buttons">
           <paper-button dialog-confirm autofocus>Close</paper-button>
@@ -290,8 +303,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   </paper-tab>
               </div>
               <div style="position:absolute;right:0;margin-left:auto">
-                <paper-tab onclick="modal0.open()" href="/sponsors">sponsors </paper-tab>
-                <paper-tab href="/sponsors">login </paper-tab>
+                <paper-tab onclick="modal0.open()" href="/sponsors">
+                  <center>
+                    <p>sponsors</p>
+                  </center>
+                </paper-tab>
+                <paper-tab href="/login">
+                  <center>
+                    <p>Login</p>
+                  </center>
+                </paper-tab>
 
               </div>
           </div>
@@ -300,16 +321,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </app-header>
 
         <!-- <iron-pages selected="{{selected}}"> -->
-        <view-splash name="splash" fullbleed></view-splash>
-        <view-about name="about"></view-about>
-        <view-schedule name="schedule"></view-schedule>
-        <view-contact name="contact"></view-contact>
-        <view-signup name="signup"></view-signup>
-        <view-gallery name="gallery"></view-gallery>
+            <view-splash name="splash" fullbleed></view-splash>
+            <view-about name="about" fullbleed></view-about>
+            <view-schedule name="schedule"></view-schedule>
+            <view-contact name="contact"></view-contact>
+            <view-signup name="signup"></view-signup>
+            <view-gallery name="gallery"></view-gallery>
+
+
         <!-- </iron-pages> -->
       </app-header-layout>
     </app-drawer-layout>
-    <iron-media-query query="min-width: 600px" query-matches="{{wideLayout}}"></iron-media-query>
+    <iron-media-query query="min-width: 640px" query-matches="{{wideLayout}}"></iron-media-query>
 
 
 
@@ -335,6 +358,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             return ['Item One', 'Item Two', 'Item Three', 'Item Four', 'Item Five'];
           }
         }
+      },
+      '_disableDocumentScrolling': function() {
+        document.body.style.overflow = 'hidden';
+      },
+      '_restoreDocumentScrolling': function() {
+        document.body.style.overflow = '';
       },
       onLayoutChange: function(wide) {
         var drawer = this.$.drawer;

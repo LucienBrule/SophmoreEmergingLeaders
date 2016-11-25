@@ -1,24 +1,190 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
 <dom-module id="view-schedule">
   <!-- Defines the element's style and local DOM -->
   <template>
+    <!--  Creds to css tricks for the table -->
+    <style>
+      .row-container {
+        width: 100%
+        @apply(--layout-horizontal);
+        @apply(--layout-justified);
+      }
+      .flexchild {
+        @apply(--layout-flex);
+      }
 
+      paper-card {
+        width: 100%;
+        margin-right: 20px;
+        /*margin: 20px;*/
+      }
+      #schedule-text{
+        /*width: 200px;*/
+        max-width: 33%;
+        @apply(--layout-self-start);
+      }
+      #schedule-calendar{
+        margin-right: 0;
+        @apply(--layout-self-start);
+      }
+      /*
+Generic Styling, for Desktops/Laptops
+*/
+
+      table {
+        width: 100%;
+        /*height: 50vh;*/
+        border-collapse: collapse;
+        /*color:*/
+      }
+      /* Zebra striping */
+
+      th {
+        color: rgba(0, 0, 0, 0.54);
+      }
+
+      td,
+      th {
+        padding: 4%;
+        text-align: left;
+        border-bottom-style: solid;
+        border-bottom-width: .01px;
+        border-bottom-color: #E4E4E4;
+      }
+      /*
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+
+      @media only screen and (max-width: 760px),
+      (min-device-width: 768px) and (max-device-width: 1024px) {
+        /* Force table to not be like tables anymore */
+        table,
+        thead,
+        tbody,
+        th,
+        td,
+        tr {
+          display: block;
+        }
+        /* Hide table headers (but not display: none;, for accessibility) */
+        thead tr {
+          position: absolute;
+          top: -9999px;
+          left: -9999px;
+        }
+        tr {
+          border-bottom-width: 1px;
+          border-bottom-style: solid;
+          border-bottom-color: #C4C4C4;
+        }
+        td {
+          /* Behave  like a "row" */
+          border: none;
+          border-bottom: 1px solid #eee;
+          position: relative;
+          padding-left: 50%;
+        }
+        td:before {
+          /* Now like a table header */
+          position: absolute;
+          /* Top/left values mimic padding */
+          top: 6px;
+          left: 6px;
+          width: 45%;
+          /*padding-right: 10px;*/
+          white-space: nowrap;
+        }
+        td:nth-of-type(1):before {
+          content: "Time ";
+        }
+        td:nth-of-type(2):before {
+          content: "Speaker ";
+        }
+        td:nth-of-type(3):before {
+          content: "Track 1 ";
+        }
+        td:nth-of-type(4):before {
+          content: "Track 2";
+        }
+        td:nth-of-type(5):before {
+          content: "Events";
+        }
+      }
     </style>
 
     <section id="schedule">
-      <div class="container">
-        <paper-card heading="Schedule" image="src/images/calendar.png" alt="calendar">
+      <div class="container ">
+        <div class="row-container">
+        <paper-card id ="schedule-text"heading="Schedule">
           <div class="card-content">
-            This is where we would tal about the scheudl fsdf asdfa sfaskdfln fasdfpoasdfa Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-            ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
+            <p>We've got a lot of things going on. Come to the bio tech building Lorem ipsum dolor sit amet, consectetur
+              adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <p>Food will be served as it comes out</p>
           </div>
           <div class="card-actions">
-            <paper-button>Share</paper-button>
-            <paper-button>Explore!</paper-button>
+            <paper-button>Some action</paper-button>
+          </div>
+        </paper-card>
+        <paper-card id="schedule-calendar" alt="calendar">
+          <div class="card-content">
+            <h4>February 1st 2017</h4>
+            <table>
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Speaker  </th>
+                  <th>Track 1</th>
+                  <th>Track 2 </th>
+                  <th>Event</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>12:00</td>
+                  <td>The Honorable Doctor Shirley</td>
+                  <td>Shirley's Cousin</td>
+                  <td>Shirley's Aunt</td>
+                  <td>Mandatory</td>
+
+
+                </tr>
+                <tr>
+                  <td>01:00</td>
+                  <td>Elon Musk</td>
+                  <td>Space X</td>
+                  <td>Nasa</td>
+                  <td>Lunch Served</td>
+                </tr>
+                <tr>
+                  <td>02:00</td>
+                  <td>David Lowe</td>
+                  <td>Kanye West</td>
+                  <td>Mr. Dogg</td>
+                  <td>Snacks</td>
+                </tr>
+                <tr>
+                  <td>03:00</td>
+                  <td>You</td>
+                  <td>Get</td>
+                  <td>The</td>
+                  <td>Idea</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-actions">
+            <paper-button>Add to Calendar</paper-button>
+            <paper-button>Email me</paper-button>
           </div>
         </paper-card>
       </div>
+    </div>
     </section>
   </template>
   <!-- Creates the element's prototype and registers it -->
