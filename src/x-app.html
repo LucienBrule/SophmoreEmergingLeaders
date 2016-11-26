@@ -15,6 +15,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
+
 
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 
@@ -64,6 +66,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="soph-views/view-signup.html">
 <link rel="import" href="soph-views/view-gallery.html">
 <link rel="import" href="soph-views/rpi-footer.html">
+<script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
 
 
 
@@ -260,8 +263,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       paper-menu-button {
         padding: 0;
       }
-      paper-item{
-        cursor:pointer;
+
+      paper-item {
+        cursor: pointer;
       }
     </style>
 
@@ -294,14 +298,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           <!-- <paper-menu-button> -->
 
-            <paper-menu-button vertical-align="bottom" horizontal-align="left">
-              <paper-button onclick=""class="dropdown-trigger">Ensure Student success</paper-button>
-              <paper-listbox class="dropdown-content">
-                <paper-item onclick="paypalform.submit()" name="submit"><iron-icon icon="icons:credit-card"></iron-icon>&nbspPaypal</paper-item>
-                <paper-item>$ Cash</paper-item>
-                <paper-item>Ƀ Bitcoin</paper-item>
-              </paper-listbox>
-            </paper-menu-button>
+          <paper-menu-button vertical-align="bottom" horizontal-align="left">
+            <paper-button onclick="" class="dropdown-trigger">Ensure Student success</paper-button>
+            <paper-listbox class="dropdown-content">
+              <paper-item onclick="paypalform.submit()" name="submit">
+                <iron-icon icon="icons:credit-card"></iron-icon>&nbspPaypal</paper-item>
+              <paper-item>$ Cash</paper-item>
+              <paper-item>Ƀ Bitcoin</paper-item>
+            </paper-listbox>
+          </paper-menu-button>
 
           <!-- This is my paypal developer information repalce this with yours in production-->
           <form is="iron-form" id="paypalform" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -319,9 +324,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="modal-container">
       <!--  Signup modal-->
       <paper-dialog id="modal" modal>
-
-        <form is="iron-form" method="POST" action="/" id="basic">
-          <paper-input name="rcs" label="RCS ID" required></paper-input>
+        <form is="iron-form" method="get" action="/" id="form">
+          <paper-input type="email" pattern="[a-z0-9]+@rpi\.edu" name="email" label="youremail@rpi.edu" required></paper-input>
           <paper-dropdown-menu label="Shirt Size" name="size" required>
             <paper-menu class="dropdown-content">
               <paper-item value="sm">Small</paper-item>
@@ -332,24 +336,49 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </paper-dropdown-menu>
           <br>
           <paper-checkbox name="food" value="yes">I like free food</paper-checkbox>
-          <paper-button raised onclick="_submit(event)">Submit</paper-button>
-          <paper-button raised onclick="_reset(event)">Reset</paper-button>
+          <paper-button raised onclick="_submit()">Submit</paper-button>
+          <paper-button raised onclick="_reset()">Reset</paper-button>
           <div class="output"></div>
-        </form>
-        <script>
-          function _submit(event) {
-            Polymer.dom(event).localTarget.parentElement.submit();
-          }
+          <script>
+            var config = {
+              apiKey: "AIzaSyCMLA9-YMZmajTlR2QIiQion98HPUbhdtI",
+              authDomain: "sophomoreemergingleaders.firebaseapp.com",
+              databaseURL: "https://sophomoreemergingleaders.firebaseio.com",
+              storageBucket: "sophomoreemergingleaders.appspot.com",
+              messagingSenderId: "1086690225731"
+            };
+            firebase.initializeApp(config);
 
-          function _reset(event) {
-            var form = Polymer.dom(event).localTarget.parentElement
-            form.reset();
-            form.querySelector('.output').innerHTML = '';
-          }
-          basic.addEventListener('iron-form-submit', function(event) {
-            this.querySelector('.output').innerHTML = JSON.stringify(event.detail);
-          });
-        </script>
+            function _submit(event) {
+
+              console.log("submitted")
+              if(!form.validate()) return;
+                // event.preventDefault();
+              console.log(form.serialize());
+              firebase.database().ref('/signups').push(form.serialize(), function(error) {
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log("submission successfull")
+                }
+              });
+              // form.submit();
+            }
+
+            function _reset(event) {
+              // var form = Polymer.dom(event).localTarget.parentElement
+              form.reset();
+              form.querySelector('.output').innerHTML = '';
+            }
+            form.addEventListener('iron-form-presubmit', function(event) {
+              console.log("this happened");
+              event.preventDefault();
+              firebase.database(form.getAttribute('action')).ref('users/').set(form.serialize());
+            });
+          </script>
+        </form>
+        <!-- <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe2oQrBz3MKVdbcCDUHR7DrsBhFkPHE4SiGclZV6HfK-XNhfA/viewform?embedded=true" style="width:80vw;height:90vh" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe> -->
+
         <div class="buttons">
           <paper-button dialog-confirm autofocus>Close</paper-button>
         </div>
@@ -433,11 +462,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <p>sponsors</p>
                   </center>
                 </paper-tab>
-                <paper-tab href="/login">
+                <!-- <paper-tab href="/login">
                   <center>
                     <p>Login</p>
                   </center>
-                </paper-tab>
+                </paper-tab> -->
 
               </div>
           </div>
@@ -467,6 +496,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
+    // Initialize Firebase
+
+
+
     Polymer({
       is: 'x-app',
       properties: {
