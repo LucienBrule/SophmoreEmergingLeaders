@@ -289,14 +289,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </div>
 
               </div>
-              <!-- </div> -->
             </div>
           </div>
         </paper-dialog-scrollable>
         <div class="buttons">
           <paper-button dialog-confirm autofocus>No thanks</paper-button>
 
-          <!-- <paper-menu-button> -->
 
           <paper-menu-button vertical-align="bottom" horizontal-align="left">
             <paper-button onclick="" class="dropdown-trigger">Ensure Student success</paper-button>
@@ -307,11 +305,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <paper-item>Ƀ Bitcoin</paper-item>
             </paper-listbox>
           </paper-menu-button>
-
-          <!-- This is my paypal developer information repalce this with yours in production-->
-          <form is="iron-form" id="paypalform" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <!-- This is my paypal  information repalce this with yours in production-->
+          <form style="display:none" id="paypalform"action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
             <input type="hidden" name="cmd" value="_s-xclick">
             <input type="hidden" name="hosted_button_id" value="VLUC8UXSZ93J2">
+            <input style="visbility:hidden" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
           </form>
 
 
@@ -352,8 +351,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             function _submit(event) {
 
               console.log("submitted")
-              if(!form.validate()) return;
-                // event.preventDefault();
+              if (!form.validate()) return;
+              // event.preventDefault();
               console.log(form.serialize());
               firebase.database().ref('/signups').push(form.serialize(), function(error) {
                 if (error) {
@@ -399,7 +398,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a href="#contact">
             <paper-item name="Contact">Contact</paper-item>
           </a>
-          <a onclick="modal.open()" >
+          <a onclick="modal.open()">
             <paper-item class="inal_emphasis" name="Signup">Signup</paper-item>
           </a>
         </paper-menu>
@@ -445,7 +444,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       </center>
                     </paper-tab>
                   </a>
-                  <a href="#signup">
                     <paper-tab class="inal_emphasis" onclick="modal.open()">
                       <center>
                         <p>
@@ -453,7 +451,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         </p>
                       </center>
                       </paper-button>
-                  </a>
                   </paper-tab>
               </div>
               <div style="position:absolute;right:0;margin-left:auto">
