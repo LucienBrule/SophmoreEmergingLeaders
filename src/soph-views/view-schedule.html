@@ -4,8 +4,8 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
 <dom-module id="view-schedule">
-  <!-- Defines the element's style and local DOM -->
-  <template>
+    <!-- Defines the element's style and local DOM -->
+    <template>
     <!--  Creds to css tricks for the table -->
     <style>
       .row-container {
@@ -122,19 +122,16 @@ and also iPads specifically.
           white-space: nowrap;
         }
         td:nth-of-type(1):before {
-          content: "Time ";
+          content: "Presentation ";
         }
         td:nth-of-type(2):before {
-          content: "Speaker ";
+          content: " ";
         }
         td:nth-of-type(3):before {
-          content: "Track 1 ";
+          content: "Time";
         }
         td:nth-of-type(4):before {
-          content: "Track 2";
-        }
-        td:nth-of-type(5):before {
-          content: "Events";
+          content: "Location";
         }
       }
     </style>
@@ -144,76 +141,170 @@ and also iPads specifically.
         <div class="row-container">
         <paper-card id ="schedule-text" class="flex-card-container" heading="Schedule">
           <div class="card-content flex-card-content">
-            <p>We've got a lot of things going on. Come to the bio tech building Lorem ipsum dolor sit amet, consectetur
-              adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-            <p>Food will be served as it comes out</p>
-          </div>
-          <div class="card-actions">
-            <paper-button>Some action</paper-button>
+            <p>The Symposium will occur form 11:am on February 1st to 5:pm. There will be talks, as
+
+              outlined below, and spontaneous breakout sessions hosted by various Symposium affiliates. The schedule is still
+
+               being finalized. So be sure to check back here, or signup to be notified of any changes.</p>
           </div>
         </paper-card>
+      </div>
+      <!--
+
+
+“I Heart Summer Arch” – The Preview to the Summer Arch 2017 Pilot! Myth busters, FAQs, previews to
+
+summer events and more!
+
+“Bachelors today, Masters tomorrow” – The Co-Term information for students interested in this
+
+opportunity!
+
+“Adulting It - Off Campus” – Things students moving Off-campus need to know, information and the
+
+process for Off-Campus Housing.
+
+“The Young Professional Network” – Tech Valley – Connecting sophomores to the professional network
+
+for future endeavors. Meet the professionals, discussions, and networking action during lunch! (Bring
+
+Resumes and Business Cards)
+
+“Best Practices for Business Management” – Lally School of Management Lecturer
+-->
+      <div class="row-container">
         <paper-card id="schedule-calendar" alt="calendar">
           <div class="card-content">
             <h4>February 1st 2017</h4>
+            <h5>11am - 5pm</h5>
             <table>
               <thead>
                 <tr>
-                  <th>Time</th>
-                  <th>Speaker  </th>
-                  <th>Track 1</th>
-                  <th>Track 2 </th>
                   <th>Event</th>
+                  <th></th>
+                  <th>Time</th>
+                  <th>Location</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>12:00</td>
-                  <td>The Honorable Doctor Shirley</td>
-                  <td>Shirley's Cousin</td>
-                  <td>Shirley's Aunt</td>
-                  <td>Mandatory</td>
+                  <td> Jack Killion
+                    <br />
+                    <i>
+                      Co-Founder of Bluestone and
+                      Killion, Top selling Author and MIT Alumni.
+                    </i>
+                  </td>
+                  <td>Harnessing the Power of Networking</td>
+                  <td>TBD</td>
+                  <td>TBD</td>
+                </tr>
+                <tr>
+                  <td>Tom Reale <br /> <i>RPI Alumni Thomas Reale shares his journey to
+
+                  Success with the NYS State Senate</i></td>
+                  <td>Keeping it REALE</td>
+                  <td>TBD</td>
+                  <td>TBD</td>
+                </tr>
+                <tr>
+                  <td>The Young Professional Network<br />
+                    <i>
+                      Connecting sophomores to the professional network
+
+for future endeavors. Meet the professionals, discussions, and networking action during lunch! (Bring
+
+Resumes and Business Cards).
+                    </i>
+                  </td>
+                  <td>Startup Tech Valley</td>
+                  <td>TBD</td>
+                  <td>TBD</td>
+                </tr>
+                <tr>
+                  <td>Best Practices for Business Management<br />
+                    <i>
+                      A presentation on the dos and don't of Buisness Management.
+                    </i>
+                  </td>
+                  <td>Lally School of Management Lecturer</td>
+                  <td>TBD</td>
+                  <td>TBD</td>
+                </tr>
+                <tr>
+                  <td>Opening of the Kimono<br />
+                    <i>Student Panelist share secrets, opportunities gained
+                  and lost, and how sophomores can learn from their experiences and benefit as a future senior to come.</i>
+                </td>
+                  <td>Graduating Seniors</td>
+                  <td>TBD</td>
+                  <td>TBD</td>
+                </tr>
+
+                <tr>
+                  <td>The 60 Second Sell <br /><i>The elevator pitch personified. Sell yourself, your brand, your skills... Go!</i></td>
+                  <td></td>
+                  <td>TBD</td>
+                  <td>TBD</td>
+                </tr>
+                <tr>
+                  <td>Internships, Co-Ops, and Jobs… Oh My<br />
+                    <i>
+                      Knowing the yellow brick road to securing future opportunities for your junior year during the symposium
+                    </i>
+                  </td>
+                  <td></td>
+                  <td>TBD</td>
+                  <td>TBD</td>
+                </tr>
+                <tr>
+                  <td>I ❤️ Summer Arch 🌈<br />
+                    <i>
+                      The Preview to the Summer Arch 2017 Pilot! Myth busters, FAQs, previews to summer events and more!
+                    </i>
+                  </td>
+                  <td></td>
+                  <td>TBD</td>
+                  <td>TBD</td>
+                </tr>
+                <tr>
+                  <td>Bachelors today, Masters tomorrow<br />
+                    <i>
+                      The Co-Term information for students interested in this opportunity!
+                    </i>
+                  </td>
+                  <td></td>
+                  <td>TBD</td>
+                  <td>TBD</td>
+                </tr>
+                <tr>
+                  <td>Adulting It - Off Campus<br />
+                    <i>
+                      Things students moving Off-campus need to know, information and the process for Off-Campus Housing.
+                    </i>
+                  </td>
+                  <td></td>
+                  <td>TBD</td>
+                  <td>TBD</td>
+                </tr>
 
 
-                </tr>
-                <tr>
-                  <td>01:00</td>
-                  <td>Elon Musk</td>
-                  <td>Space X</td>
-                  <td>Nasa</td>
-                  <td>Lunch Served</td>
-                </tr>
-                <tr>
-                  <td>02:00</td>
-                  <td>David Lowe</td>
-                  <td>Kanye West</td>
-                  <td>Mr. Dogg</td>
-                  <td>Snacks</td>
-                </tr>
-                <tr>
-                  <td>03:00</td>
-                  <td>You</td>
-                  <td>Get</td>
-                  <td>The</td>
-                  <td>Idea</td>
-                </tr>
               </tbody>
             </table>
           </div>
-          <div class="card-actions">
+          <!-- <div class="card-actions">
             <paper-button>Add to Calendar</paper-button>
             <paper-button>Email me</paper-button>
-          </div>
+          </div> -->
         </paper-card>
       </div>
     </div>
     </section>
   </template>
-  <!-- Creates the element's prototype and registers it -->
-  <script>
-    Polymer({
-      is: 'view-schedule'
-    });
-  </script>
+    <!-- Creates the element's prototype and registers it -->
+    <script>
+        Polymer({
+            is: 'view-schedule'
+        });
+    </script>
 </dom-module>

@@ -324,15 +324,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <!--  Signup modal-->
       <paper-dialog id="modal" modal>
         <form is="iron-form" method="get" action="/" id="form">
+          <paper-input type="text" name = "firstname" label="firstname" required></paper-input>
+          <paper-input type="text" name = "lastname" label="lastname" required></paper-input>
+          <paper-input type="text" name = "major" label="major" required></paper-input>
           <paper-input type="email" pattern="[a-z0-9]+@rpi\.edu" name="email" label="youremail@rpi.edu" required></paper-input>
-          <paper-dropdown-menu label="Shirt Size" name="size" required>
+          <!-- <paper-dropdown-menu label="Shirt Size" name="size" required>
             <paper-menu class="dropdown-content">
               <paper-item value="sm">Small</paper-item>
               <paper-item value="md">Medium</paper-item>
               <paper-item value="lg">Large</paper-item>
               <paper-item value="xl">Extra-large</paper-item>
             </paper-menu>
-          </paper-dropdown-menu>
+          </paper-dropdown-menu> -->
           <br>
           <paper-checkbox name="food" value="yes">I like free food</paper-checkbox>
           <paper-button raised onclick="_submit()">Submit</paper-button>
@@ -395,9 +398,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a href="#schedule">
             <paper-item name="Schedule">Schedule</paper-item>
           </a>
-          <a href="#contact">
+          <!-- <a href="#contact">
             <paper-item name="Contact">Contact</paper-item>
-          </a>
+          </a> -->
           <a onclick="modal.open()">
             <paper-item class="inal_emphasis" name="Signup">Signup</paper-item>
           </a>
@@ -454,17 +457,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   </paper-tab>
               </div>
               <div style="position:absolute;right:0;margin-left:auto">
-                <paper-tab onclick="sponsorModal.open()" href="/sponsors">
+                <!-- <paper-tab onclick="sponsorModal.open()" href="/sponsors">
                   <center>
                     <p>sponsors</p>
                   </center>
-                </paper-tab>
-                <!-- <paper-tab href="/login">
-                  <center>
-                    <p>Login</p>
-                  </center>
                 </paper-tab> -->
-
               </div>
           </div>
           </app-toolbar>
