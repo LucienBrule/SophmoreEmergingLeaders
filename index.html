@@ -17,6 +17,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <title>Soph Symposium 17</title>
 
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
 
 
   <link rel="import" href="src/x-app.html">
@@ -56,6 +57,53 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <p style="color:whitesmoke;background-color:#424242;margin:0;padding:0"> 🛠 w/ ❤️ by <a href="https://lucienbrule.com"> Lucien Brulé </a> @ RPI</p>
   <!-- The footer is ripped directly from www.rpi.edu, creds to whoever wrote it, it's nice-->
 
+<script>
+function test(){
+  console.log("TEST RAN");
+}
+var config = {
+  apiKey: "AIzaSyCMLA9-YMZmajTlR2QIiQion98HPUbhdtI",
+  authDomain: "sophomoreemergingleaders.firebaseapp.com",
+  databaseURL: "https://sophomoreemergingleaders.firebaseio.com",
+  storageBucket: "sophomoreemergingleaders.appspot.com",
+  messagingSenderId: "1086690225731"
+};
+firebase.initializeApp(config);
+firebase.auth().signInAnonymously().catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // ...
+});
 
+function _submit(event) {
+  var form = document.getElementById('form');
+
+  if (!form.validate()) return;
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      var isAnonymous = user.isAnonymous;
+      var uid = user.uid;
+      firebase.database().ref('signups/' + uid).set(
+        form.serialize()
+      );
+    } else {
+    }
+  });
+}
+
+function _reset(event) {
+  // var form = Polymer.dom(event).localTarget.parentElement
+  form.reset();
+  form.querySelector('.output').innerHTML = '';
+}
+form.addEventListener('iron-form-presubmit', function(event) {
+  console.log("this happened");
+  event.preventDefault();
+
+});
+</script>
 </body>
 </html>
