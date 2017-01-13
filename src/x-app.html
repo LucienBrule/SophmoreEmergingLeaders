@@ -64,9 +64,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="soph-views/view-schedule.html">
 <link rel="import" href="soph-views/view-contact.html">
 <link rel="import" href="soph-views/view-signup.html">
-<link rel="import" href="soph-views/view-gallery.html">
+<!-- <link rel="import" href="soph-views/view-gallery.html"> -->
 <link rel="import" href="soph-views/rpi-footer.html">
-<script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
 
 
 
@@ -306,7 +306,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </paper-listbox>
           </paper-menu-button>
           <!-- This is my paypal  information repalce this with yours in production-->
-          <form style="display:none" id="paypalform"action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <form style="display:none" id="paypalform" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
             <input type="hidden" name="cmd" value="_s-xclick">
             <input type="hidden" name="hosted_button_id" value="VLUC8UXSZ93J2">
             <input style="visbility:hidden" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
@@ -324,9 +324,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <!--  Signup modal-->
       <paper-dialog id="modal" modal>
         <form is="iron-form" method="get" action="/" id="form">
-          <paper-input type="text" name = "firstname" label="firstname" required></paper-input>
-          <paper-input type="text" name = "lastname" label="lastname" required></paper-input>
-          <paper-input type="text" name = "major" label="major" required></paper-input>
+          <paper-input type="text" name="firstname" label="firstname" required></paper-input>
+          <paper-input type="text" name="lastname" label="lastname" required></paper-input>
+          <paper-input type="text" name="major" label="major" required></paper-input>
           <paper-input type="email" pattern="[a-z0-9]+@rpi\.edu" name="email" label="youremail@rpi.edu" required></paper-input>
           <!-- <paper-dropdown-menu label="Shirt Size" name="size" required>
             <paper-menu class="dropdown-content">
@@ -336,10 +336,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <paper-item value="xl">Extra-large</paper-item>
             </paper-menu>
           </paper-dropdown-menu> -->
-          <br>
           <paper-checkbox name="food" value="yes">I like free food</paper-checkbox>
+          <br />
           <paper-button raised onclick="_submit()">Submit</paper-button>
           <paper-button raised onclick="_reset()">Reset</paper-button>
+          <br />
           <div class="output"></div>
           <script>
             var config = {
@@ -350,21 +351,42 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               messagingSenderId: "1086690225731"
             };
             firebase.initializeApp(config);
+            firebase.auth().signInAnonymously().catch(function(error) {
+              // Handle Errors here.
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              // ...
+            });
 
             function _submit(event) {
+
 
               console.log("submitted")
               if (!form.validate()) return;
               // event.preventDefault();
               console.log(form.serialize());
-              firebase.database().ref('/signups').push(form.serialize(), function(error) {
-                if (error) {
-                  console.log(error);
-                } else {
-                  console.log("submission successfull")
-                }
-              });
               // form.submit();
+
+              firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                  // User is signed in.
+                  var isAnonymous = user.isAnonymous;
+                  var uid = user.uid;
+                  console.log("user is", user);
+                  console.log(user.isAnonymous, uid);
+                  // firebase.database(form.getAttribute('action')).ref('users/' + uid).set(form.serialize());
+                  firebase.database().ref('signups/' + uid).set(
+                    form.serialize()
+                  );
+
+                  // ...
+                } else {
+                  // User is signed out.
+                  // ...
+                  console.log("we fucked up")
+                }
+                // ...
+              });
             }
 
             function _reset(event) {
@@ -375,7 +397,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             form.addEventListener('iron-form-presubmit', function(event) {
               console.log("this happened");
               event.preventDefault();
-              firebase.database(form.getAttribute('action')).ref('users/').set(form.serialize());
+
             });
           </script>
         </form>
@@ -447,13 +469,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       </center>
                     </paper-tab>
                   </a>
-                    <paper-tab class="inal_emphasis" onclick="modal.open()">
-                      <center>
-                        <p>
-                          <iron-icon icon="icons:thumb-up"></iron-icon> Signup
-                        </p>
-                      </center>
-                      </paper-button>
+                  <paper-tab class="inal_emphasis" onclick="modal.open()">
+                    <center>
+                      <p>
+                        <iron-icon icon="icons:thumb-up"></iron-icon> Signup
+                      </p>
+                    </center>
+                    </paper-button>
                   </paper-tab>
               </div>
               <div style="position:absolute;right:0;margin-left:auto">
@@ -474,7 +496,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <view-schedule name="schedule"></view-schedule>
         <view-contact name="contact"></view-contact>
         <view-signup name="signup"></view-signup>
-        <view-gallery name="gallery"></view-gallery>
+        <!-- <view-gallery name="gallery"></view-gallery> -->
         <rpi-footer></rpi-footer>
 
 
