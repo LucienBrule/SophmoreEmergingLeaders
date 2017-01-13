@@ -1,13 +1,3 @@
-<!--
-@license
-Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
@@ -269,56 +259,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <!--  Sponsor modal-->
-    <div class="modal-container">
-      <paper-dialog on-iron-overlay-opened="_disableDocumentScrolling" on-iron-overlay-closed="_restoreDocumentScrolling" id="sponsorModal" with-backdrop="true">
-        <paper-dialog-scrollable>
-          <!-- <h1> Some text </h1> -->
-          <div id="sponsor-modal-content">
-            <h3>Help make this a reality?</h3></h3>
-            <div class="loading-container">
-              <div class="div_centerer">
-                <paper-spinner-lite class="loading-spinner" id="buisness-letter-loading" alt="loading" active></paper-spinner-lite>
-              </div>
-              <!-- <div id="buisness-letter-container"> -->
-              <div class="loading-content">
-                <div id=id="buisness-letter-container">
-
-                  <pdf-browser-viewer width="100%" id="buisness-letter" vertical-align="top" style="" file="https://firebasestorage.googleapis.com/v0/b/sophomoreemergingleaders.appspot.com/o/pdfs%2Ftest1.pdf?alt=media&token=a9ad8863-644a-4e45-90ab-2acc0647d1b7" height="100%"
-                  fullbleed></pdf-browser-viewer>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </paper-dialog-scrollable>
-        <div class="buttons">
-          <paper-button dialog-confirm autofocus>No thanks</paper-button>
-
-
-          <paper-menu-button vertical-align="bottom" horizontal-align="left">
-            <paper-button onclick="" class="dropdown-trigger">Ensure Student success</paper-button>
-            <paper-listbox class="dropdown-content">
-              <paper-item onclick="paypalform.submit()" name="submit">
-                <iron-icon icon="icons:credit-card"></iron-icon>&nbspPaypal</paper-item>
-              <paper-item>$ Cash</paper-item>
-              <paper-item>Ƀ Bitcoin</paper-item>
-            </paper-listbox>
-          </paper-menu-button>
-          <!-- This is my paypal  information repalce this with yours in production-->
-          <form style="display:none" id="paypalform" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="VLUC8UXSZ93J2">
-            <input style="visbility:hidden" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-          </form>
-
-
-
-        </div>
-    </div>
-    </paper-dialog>
-    </div>
 
     <div class="modal-container">
       <!--  Signup modal-->
@@ -328,14 +268,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-input type="text" name="lastname" label="lastname" required></paper-input>
           <paper-input type="text" name="major" label="major" required></paper-input>
           <paper-input type="email" pattern="[a-z0-9]+@rpi\.edu" name="email" label="youremail@rpi.edu" required></paper-input>
-          <!-- <paper-dropdown-menu label="Shirt Size" name="size" required>
-            <paper-menu class="dropdown-content">
-              <paper-item value="sm">Small</paper-item>
-              <paper-item value="md">Medium</paper-item>
-              <paper-item value="lg">Large</paper-item>
-              <paper-item value="xl">Extra-large</paper-item>
-            </paper-menu>
-          </paper-dropdown-menu> -->
           <paper-checkbox name="food" value="yes">I like free food</paper-checkbox>
           <br />
           <paper-button raised onclick="_submit()">Submit</paper-button>
@@ -361,31 +293,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             function _submit(event) {
 
 
-              console.log("submitted")
               if (!form.validate()) return;
-              // event.preventDefault();
-              console.log(form.serialize());
-              // form.submit();
 
               firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
                   // User is signed in.
                   var isAnonymous = user.isAnonymous;
                   var uid = user.uid;
-                  console.log("user is", user);
-                  console.log(user.isAnonymous, uid);
-                  // firebase.database(form.getAttribute('action')).ref('users/' + uid).set(form.serialize());
                   firebase.database().ref('signups/' + uid).set(
                     form.serialize()
                   );
-
-                  // ...
                 } else {
-                  // User is signed out.
-                  // ...
-                  console.log("we fucked up")
                 }
-                // ...
               });
             }
 
@@ -401,8 +320,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             });
           </script>
         </form>
-        <!-- <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe2oQrBz3MKVdbcCDUHR7DrsBhFkPHE4SiGclZV6HfK-XNhfA/viewform?embedded=true" style="width:80vw;height:90vh" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe> -->
-
         <div class="buttons">
           <paper-button dialog-confirm autofocus>Close</paper-button>
         </div>
@@ -420,9 +337,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a href="#schedule">
             <paper-item name="Schedule">Schedule</paper-item>
           </a>
-          <!-- <a href="#contact">
-            <paper-item name="Contact">Contact</paper-item>
-          </a> -->
+
           <a onclick="modal.open()">
             <paper-item class="inal_emphasis" name="Signup">Signup</paper-item>
           </a>
@@ -479,11 +394,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   </paper-tab>
               </div>
               <div style="position:absolute;right:0;margin-left:auto">
-                <!-- <paper-tab onclick="sponsorModal.open()" href="/sponsors">
-                  <center>
-                    <p>sponsors</p>
-                  </center>
-                </paper-tab> -->
+
               </div>
           </div>
           </app-toolbar>
