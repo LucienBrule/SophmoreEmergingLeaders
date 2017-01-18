@@ -52,15 +52,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 </head>
 <body unresolved>
-
   <x-app></x-app>
   <p style="color:whitesmoke;background-color:#424242;margin:0;padding:0"> 🛠 w/ ❤️ by <a href="https://lucienbrule.com"> Lucien Brulé </a> @ RPI</p>
   <!-- The footer is ripped directly from www.rpi.edu, creds to whoever wrote it, it's nice-->
 
 <script>
-function test(){
-  console.log("TEST RAN");
-}
 var config = {
   apiKey: "AIzaSyCMLA9-YMZmajTlR2QIiQion98HPUbhdtI",
   authDomain: "sophomoreemergingleaders.firebaseapp.com",
@@ -78,6 +74,7 @@ firebase.auth().signInAnonymously().catch(function(error) {
 
 function _submit(event) {
   var form = document.getElementById('form');
+  var modal = document.getElementById('modal');
 
   if (!form.validate()) return;
 
@@ -89,6 +86,13 @@ function _submit(event) {
       firebase.database().ref('signups/' + uid).set(
         form.serialize()
       );
+      modal.style.backgroundColor = "limegreen"
+      // artifical load time because they told me to
+      setTimeout(function(){
+        modal.close();
+        modal.style.backgroundColor = "whitesmoke"
+      }, 200);
+
     } else {
     }
   });
